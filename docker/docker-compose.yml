@@ -1,0 +1,72 @@
+version: "3.7"
+
+# docker network create -d bridge --subnet 10.10.0.0/24 --gateway 10.10.0.1 fastfednet
+
+services:
+
+  sdk:
+    image: fastfed-node-sdk
+    container_name: fastfed-node-sdk
+    build: ../fastfed-node-sdk
+    volumes:
+      - ../fastfed-node-sdk:/source/fastfed-node-sdk
+      - sdk-node-modules:/source/fastfed-node-sdk/node_modules
+      - sdk-dist:/source/fastfed-node-sdk/dist
+      - sdk-dist-node-modules:/source/fastfed-node-sdk/dist/node_modules
+  
+  keycloak:
+    image: fastfed-keycloak
+    container_name: fastfed-keycloak
+    build: ../fastfed-idp-app/server/keycloak
+    ports:
+      - "8080:8080"
+    depends_on:
+      - sdk
+   
+  idp:
+    image: fastfed-idp-app
+    container_name: fastfed-idp-app
+    build: ../fastfed-idp-app
+    volumes:
+      - ../fastfed-idp-app:/source/fastfed-idp-app
+      - sdk-dist:/source/fastfed-node-sdk/dist
+      - idp-node-modules:/source/fastfed-idp-app/node_modules
+      - idp-node-modules-server:/source/fastfed-idp-app/server/node_modules
+      - idp-node-modules-client:/source/fastfed-idp-app/client/node_modules
+    ports:      
+      - "9230:9229"
+      - "8012:8012"
+      - "49153:49153" # angular live reload
+    depends_on:
+      - sdk
+      - keycloak  
+  
+  app-provider:
+    image: fastfed-application-provider
+    container_name: fastfed-application-provider
+    build: ../fastfed-application-provider
+    volumes:
+      - ../fastfed-application-provider:/source/fastfed-application-provider   
+      - sdk-dist:/source/fastfed-node-sdk/dist
+      - app-provider-node-modules:/source/fastfed-application-provider/node_modules
+      - app-provider-node-modules-server:/source/fastfed-application-provider/server/node_modules
+      - app-provider-node-modules-client:/source/fastfed-application-provider/client/node_modules
+    ports:
+      - "9229:9229"
+      - "8010:8010"
+    depends_on:
+      - sdk
+      - keycloak         
+      - idp
+   
+volumes:    
+    sdk-node-modules:
+    sdk-dist:
+    sdk-dist-node-modules:
+    idp-node-modules:
+    idp-node-modules-server:
+    idp-node-modules-client:
+    app-provider-node-modules:
+    app-provider-node-modules-server:
+    app-provider-node-modules-client:
+

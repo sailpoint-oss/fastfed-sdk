@@ -1,0 +1,36 @@
+{
+	"name": "fastfed-idp-app",
+	"version": "0.1.0",
+	"description": "Sample FastFed Identity Provider Demo",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sailpoint-oss/fastfed-sdk.git",
+		"directory": "fastfed-idp-app"
+	},
+	"scripts": {
+		"build-all": "(npm-run-all -p build-client build-server) && ts-node build.ts",
+		"build-client": "(cd ./client && npm run build)",
+		"build-server": "(cd ./server && npm run build)",
+		"start": "npm-run-all -p start-server start-client",
+		"start-server": "(cd server && npm run-script start)",
+		"start-client": "(cd client && npm run-script start)",
+		"docker-init": "(cd server && npm install && cd ..) && (cd client && npm install && cd ..)"
+	},
+	"devDependencies": {
+		"@types/node": "^13.7.7",
+		"npm-run-all": "^4.1.5",
+		"shelljs": "^0.8.3",
+		"ts-lint": "^4.5.1",
+		"ts-node": "^8.0.2",
+		"tslint": "^5.13.1",
+		"typescript": "^3.4.5"
+	},
+	"author": "Brian Rose <brian.rose@sailpoint.com>",
+	"license": "MIT",
+	"keywords": [
+		"fastfed",
+		"identity",
+		"provider",
+		"SailPoint"
+	]
+}

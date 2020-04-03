@@ -1,0 +1,53 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title ">Identity Provider SCIM Credentials</h4>
+                      <p class="card-category">Identity Providers that have registered using FastFed for provisioning</p>
+                  </div>
+                  <ng-template #noApps>
+                      No apps found
+                  </ng-template>
+                  <div class="card-body" *ngIf="applications$ | async as applications else noApps">
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead class=" text-primary">
+                                  <th>
+                                      Entity Identifier
+                                  </th>
+                                  <th>
+                                      Name
+                                  </th>
+                                  <th>
+                                      Token Expiration
+                                  </th>
+                                  <th>
+                                      Contact
+                                  </th>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let app of applications">
+                                      <td>
+                                          {{app.entityId}}
+                                      </td>
+                                      <td>
+                                          {{app.name}}
+                                      </td>
+                                      <td>
+                                          {{ getExpirationString(app.oauth.expiresIn)}}
+                                      </td>
+                                      <td>
+                                          {{app.contact.email}}
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+<!--<ul *ngIf="discoveryResults$ | async as results else noData">-->
+<!--    <h2>FastFed Providers for Brian Rose</h2>-->
+<!--    <li *ngFor="let result of results">-->
+<!--        {{result.fastFedMetadata.display_settings.display_name}}-->
+<!--        <a mat-button routerLink="/consent" [state]="result" color="primary">Configure using FastFed</a>-->
+<!--    </li>-->
+<!--</ul>-->
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title">Setup using FastFed </h4>
+                <!--                <p class="card-category">Created using Roboto Font Family</p>-->
+            </div>
+            <div class="card-body">
+                <div id="fastfed">
+                    <div class="card-title">
+                        <h2 *ngIf="hasSelectedProvider() else noProviderSelected">
+                            {{selectedProvider.displayName}}
+                        </h2>
+                        <ng-template #noProviderSelected>
+                            <h2>Select an Identity or Governance Provider</h2>
+                        </ng-template>
+                    </div>
+                    <div>
+                        <form [formGroup]="stepperFormGroup">
+                            <mat-form-field *ngIf="getDiscoveries() | async as results else noData">
+                                <mat-label>Available provider(s)</mat-label>
+                                <mat-select required formControlName="providerChooserControl"
+                                            [(ngModel)]="selectedProvider"
+                                            name="result" placeholder="--- select provider ---">
+                                    <mat-option *ngFor="let result of results" [value]="result">
+                                        {{result.displayName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error
+                                        *ngIf="stepperFormGroup.controls.providerChooserControl.hasError('required')">
+                                    Please choose a provider
+                                </mat-error>
+                            </mat-form-field>
+
+                            <div *ngIf="isFastFedPending()">
+                                <p>
+                                    The FastFed process cannot continue because there is currently a FastFed handshake in process between this application
+                                    and the identity provider named
+                                    <b>{{selectedProvider.displayName}}</b>.
+                                </p>
+                                <p>
+                                    You can cancel the existing handshake by going to the <a routerLink="/whitelist">Pending Handshakes</a> section.  Once canceled, you can start the FastFed process again.
+                                </p>
+                                <div class="button-container">
+                                    <button mat-stroked-button type="button">OK</button>
+                                </div>
+                            </div>
+
+
+                            <mat-horizontal-stepper *ngIf="hasSelectedProvider() && !isFastFedPending()" labelPosition="bottom" #stepper
+                                                    linear>
+                                <mat-step [stepControl]="stepperFormGroup" required *ngIf="isFastFedPending()">
+                                    <ng-template matStepLabel>Pending FastFed Cancellation</ng-template>
+
+                                </mat-step>
+                                <mat-step [stepControl]="stepperFormGroup" required *ngIf="hasDuplicates()">
+                                    <ng-template matStepLabel>Duplicates</ng-template>
+                                    <mat-form-field>
+                                        <input matInput placeholder="Address" required>
+                                    </mat-form-field>
+                                    <div class="button-container">
+                                        <button mat-stroked-button matStepperPrevious *ngIf="isFastFedPending()">Back</button>
+                                        <button mat-stroked-button matStepperNext>Next</button>
+                                    </div>
+                                </mat-step>
+                                <mat-step [stepControl]="stepperFormGroup" required
+                                          *ngIf="hasSelectedProvider() && selectedProvider.commonCapabilities">
+                                    <ng-template matStepLabel>Confirm FastFed Options</ng-template>
+                                    <div>
+                                        <h3>The following options will be used by the FastFed process:</h3>
+                                        <div *ngIf="selectedProvider.commonCapabilities.authentication_profiles"
+                                             style="margin: 5px 0;">
+                                            <h4>Authentication Profiles</h4>
+                                            <div *ngFor="let authProfile of selectedProvider.commonCapabilities.authentication_profiles">
+                                                <div>{{authProfile}}</div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="selectedProvider.commonCapabilities.provisioning_profiles"
+                                             style="margin: 5px 0;">
+                                            <h4>Provisioning Profiles</h4>
+                                            <div *ngFor="let provProfile of selectedProvider.commonCapabilities.provisioning_profiles">
+                                                <div>{{provProfile}}</div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="selectedProvider.commonCapabilities.schema_grammars"
+                                             style="margin: 5px 0;">
+                                            <h4>Supported Schema Grammars</h4>
+                                            <div *ngFor="let grammar of selectedProvider.commonCapabilities.schema_grammars">
+                                                <div>{{grammar}}</div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="selectedProvider.commonCapabilities.signing_alg_values_supported"
+                                             style="margin: 5px 0;">
+                                            <h4>Supported JWT Signing Algorithms</h4>
+                                            <div *ngFor="let alg of selectedProvider.commonCapabilities.signing_alg_values_supported">
+                                                <div>{{alg}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="button-container">
+                                        <button mat-stroked-button matStepperPrevious *ngIf="hasDuplicates() || isFastFedPending()">Back</button>
+                                        <button mat-stroked-button matStepperNext>Confirm</button>
+                                    </div>
+                                </mat-step>
+                                <mat-step *ngIf="hasSelectedProvider()">
+                                    <ng-template matStepLabel>Ready to Start</ng-template>
+                                    <div>
+                                        You are now pre-configured to start the FastFed handshake. If you are ready,
+                                        click 'Start' below.
+                                    </div>
+                                    <div class="button-container">
+                                        <button mat-stroked-button matStepperPrevious>Back</button>
+                                        <button mat-stroked-button matStepperNext (click)="startFastFed()">Start</button>
+                                    </div>
+                                </mat-step>
+                            </mat-horizontal-stepper>
+                            <ng-template #noData>There were no valid FastFed metadata endpoints discovered.
+                            </ng-template>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

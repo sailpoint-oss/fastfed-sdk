@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Federation</h4>
+                        <p class="card-category">Currentl IdP SSO Configuration</p>
+                    </div>
+                    <div class="card-body" *ngIf="getSsoSettings() | async as ssoSettings">
+<!--                        <div class="form-group">-->
+<!--                            <input type="text" name="Provider Identifier" class="form-control" (value)="ssoSettings.entityId">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <input type="undefined" name="fastfedProviderMetadata" [(ngModel)]="fastfedProviderMetadata" class="form-control" value="[object Object]">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <input type="text" name="profileUrn" [(ngModel)]="profileUrn" class="form-control" value="urn:ietf:params:fastfed:1.0:authentication:SAML:Basic">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <input type="text" name="authEndpointResponseBody" [(ngModel)]="authEndpointResponseBody" class="form-control" value="https://adfs.labs.sailpoint.com/federationmetadata/2007-06/federationmetadata.xml">-->
+<!--                        </div>-->
+                        {{ ssoSettings.authEndpointResponseBody}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,56 @@
+{
+	"name": "fastfed-application-provider-demo-server",
+	"version": "0.1.0",
+	"description": "FastFed Demo Application Provider",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sailpoint-oss/fastfed-sdk.git",
+		"directory": "fastfed-application-provider/server"
+	},
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon -L src/index.ts | pino-pretty",
+		"build": "ts-node build.ts && tsc"
+	},
+	"dependencies": {
+		"bluebird": "^3.5.3",
+		"body-parser": "^1.18.3",
+		"cookie-parser": "^1.4.4",
+		"dotenv": "^8.2.0",
+		"express": "^4.16.4",
+		"express-openapi-validator": "^0.53.3",
+		"express-session": "^1.16.2",
+		"http-proxy": "^1.18.0",
+		"http-proxy-middleware": "^1.0.1",
+		"jose": "^1.17.1",
+		"lokijs": "^1.5.8",
+		"passport": "^0.4.0",
+		"passport-saml": "^1.1.0",
+		"pino": "^5.11.1",
+		"request": "^2.88.0",
+		"request-promise-native": "^1.0.7",
+		"secure-random": "^1.1.2"
+	},
+	"devDependencies": {
+		"@types/node": "^13.7.7",
+		"@types/bluebird": "^3.5.26",
+		"@types/chai": "^4.1.7",
+		"@types/express": "^4.16.1",
+		"@types/pino": "^5.8.5",
+		"nodemon": "^1.19.0",
+		"pino-pretty": "^2.6.1",
+		"shelljs": "^0.8.3",
+		"ts-lint": "^4.5.1",
+		"ts-node": "^8.0.2",
+		"tslint": "^5.13.1",
+		"typescript": "^3.4.5"
+	},
+	"author": "Brian Rose <brian.rose@sailpoint.com>",
+	"license": "MIT",
+	"keywords": [
+		"fastfed",
+		"application",
+		"provider",
+		"SailPoint"
+	]
+}

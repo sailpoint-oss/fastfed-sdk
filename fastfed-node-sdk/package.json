@@ -1,0 +1,43 @@
+{
+	"name": "fastfed-node-sdk",
+	"version": "0.1.0",
+	"description": "FastFed SDK for NodeJS",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sailpoint-oss/fastfed-sdk.git",
+		"directory": "fastfed-node-sdk"
+	},
+	"scripts": {
+		"start": "nodemon -L src/index.ts | pino-pretty",
+		"watch": "tsc -w",
+		"compile": "ts-node build.ts && tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"jose": "^1.17.1",
+		"jwks-rsa": "^1.6.0",
+		"moment": "^2.24.0",
+		"pino": "^5.11.1",
+		"request": "^2.88.0",
+		"request-promise-native": "^1.0.7"
+	},
+	"devDependencies": {
+		"@types/node": "^13.7.7",
+		"nodemon": "^1.19.4",
+		"pino-pretty": "^2.6.1",
+		"shelljs": "^0.8.3",
+		"ts-lint": "^4.5.1",
+		"ts-node": "^8.0.2",
+		"tslint": "^5.13.1",
+		"typescript": "^3.4.5"
+	},
+	"keywords": [
+		"FastFed",
+		"NodeJS",
+		"SDK",
+		"SailPoint"
+	],
+	"author": "Brian Rose <brian.rose@sailpoint.com>",
+	"license": "MIT"
+}

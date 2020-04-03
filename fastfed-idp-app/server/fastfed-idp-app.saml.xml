@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="urn:sailpoint:fastfed:idp" ID="urn_sailpoint_fastfed_idp">
+  <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://fastfed-idp.labs.sailpoint.com/saml/logout"/>
+    <AssertionConsumerService index="1" isDefault="true" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://fastfed-idp.labs.sailpoint.com/saml/sso"/>
+  </SPSSODescriptor>
+</EntityDescriptor>

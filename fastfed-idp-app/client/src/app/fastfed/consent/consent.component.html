@@ -1,0 +1,163 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Setup using FastFed </h4>
+            </div>
+            <div class="card-body">
+                <div id="fastfed">
+                    <div class="card-title">
+                        <h2 *ngIf="hasConfirmationResults() else noProviderLoaded">
+                            {{confirmationResults.displayName}}
+                        </h2>
+                        <ng-template #noProviderLoaded>
+                            <h2>Loading ...</h2>
+                        </ng-template>
+                    </div>
+                    <div *ngIf="hasConfirmationResults()">
+                        <form [formGroup]="stepperFormGroup">
+
+                            <mat-horizontal-stepper labelPosition="bottom" #stepper linear>
+                                <mat-step [stepControl]="stepperFormGroup" required *ngIf="hasDuplicates()">
+                                    <ng-template matStepLabel>Duplicates</ng-template>
+                                    <div>
+                                        There is already an SSO relying party {{confirmationResults.displayName}}
+                                        ({{confirmationResults.entityId}}) for this identity provider.
+                                        Please correct this and click 'Next' to continue. If you don't correct this, the
+                                        FastFed process will most likely fail.
+                                    </div>
+                                    <div class="button-container">
+                                        <button mat-stroked-button matStepperNext>Next</button>
+                                    </div>
+                                </mat-step>
+                                <mat-step [stepControl]="stepperFormGroup" required *ngIf="hasConfirmationResults()">
+                                    <ng-template matStepLabel>
+                                        Federation Consent
+                                    </ng-template>
+                                    <div>
+                                        <mat-label>
+                                            <h3>The application {{confirmationResults.displayName}} is requesting a new
+                                                federation using the
+                                                following settings:</h3>
+                                        </mat-label>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div *ngIf="confirmationResults.commonCapabilities.authentication_profiles"
+                                                         style="margin: 5px 0;">
+                                                        <h4>Authentication Profile</h4>
+                                                        <div *ngFor="let authProfile of confirmationResults.commonCapabilities.authentication_profiles">
+                                                            <div>{{authProfile}}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div *ngIf="confirmationResults.commonCapabilities.provisioning_profiles"
+                                                         style="margin: 5px 0;">
+                                                        <h4>Provisioning Profile</h4>
+                                                        <div *ngFor="let provProfile of confirmationResults.commonCapabilities.provisioning_profiles">
+                                                            <div>{{provProfile}}</div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div *ngIf="confirmationResults.commonCapabilities.signing_alg_values_supported"
+                                                         style="margin: 5px 0;">
+                                                        <h4>JWT Signing Algorithm</h4>
+                                                        <div *ngFor="let alg of confirmationResults.commonCapabilities.signing_alg_values_supported">
+                                                            <div>{{alg}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div *ngIf="confirmationResults.commonCapabilities.schema_grammars"
+                                                         style="margin: 5px 0;">
+                                                        <h4>Supported Schema Grammar</h4>
+                                                        <div *ngFor="let grammar of confirmationResults.commonCapabilities.schema_grammars">
+                                                            <div>{{confirmationResults.grammar}}</div>
+                                                            <div style="margin: 20px;">
+                                                                <div *ngIf="confirmationResults.requestedAttributes.required_user_attributes">
+                                                                    <h4>Required User Attributes</h4>
+                                                                    <div *ngFor="let reqAttr of confirmationResults.requestedAttributes.required_user_attributes">
+                                                                        <div>{{reqAttr}}</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div *ngIf="confirmationResults.requestedAttributes.optional_user_attributes">
+                                                                    <h4>Optional User Attributes</h4>
+                                                                    <div *ngFor="let opAttr of confirmationResults.requestedAttributes.optional_user_attributes">
+                                                                        <div>{{opAttr}}</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div *ngIf="confirmationResults.requestedAttributes.required_group_attributes">
+                                                                    <h4>Required Group Attributes</h4>
+                                                                    <div *ngFor="let reqGroupAttr of confirmationResults.requestedAttributes.required_group_attributes">
+                                                                        <div>{{reqGroupAttr}}</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div *ngIf="confirmationResults.requestedAttributes.optional_group_attributes">
+                                                                    <h4>Optional Group Attributes</h4>
+                                                                    <div *ngFor="let opGroupAttr of confirmationResults.requestedAttributes.optional_group_attributes">
+                                                                        <div>{{opGroupAttr}}</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="button-container">
+                                        <button mat-stroked-button matStepperPrevious *ngIf="hasDuplicates()">Back
+                                        </button>
+                                        <button mat-stroked-button matStepperNext>Confirm</button>
+                                    </div>
+                                </mat-step>
+                                <mat-step *ngIf="hasConfirmationResults()">
+                                    <ng-template matStepLabel>Ready to Start</ng-template>
+                                    <div>
+                                        You have now consented to allowing {{confirmationResults.displayName}} the
+                                        necessary permissions. If you are ready to
+                                        continue the FastFed process, click 'Continue' below.
+                                    </div>
+                                    <div class="button-container">
+                                        <button mat-stroked-button matStepperPrevious>Back
+                                        </button>
+                                        <button mat-stroked-button matStepperNext (click)="continueFastFed()">Continue
+                                        </button>
+                                    </div>
+                                </mat-step>
+
+                                <mat-step *ngIf="hasConfirmationResults()">
+                                    <ng-template matStepLabel>Status</ng-template>
+                                    <h3>
+                                        The FastFed process is complete.
+                                    </h3>
+                                    <div *ngIf="isCompleted">
+                                        <p *ngIf="!isError; else fastFedError">
+                                            You have successfully set up a federated relationship
+                                            between {{confirmationResults.displayName}}
+                                            and this identity provider!
+                                        </p>
+                                        <ng-template #fastFedError>
+                                            <p>
+                                                There was an error during the FastFed process. Please correct the
+                                                situation
+                                                and try again.
+                                            </p>
+                                            <p>
+                                                {{errorMsg}}
+                                            </p>
+                                        </ng-template>
+                                    </div>
+                                </mat-step>
+                            </mat-horizontal-stepper>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

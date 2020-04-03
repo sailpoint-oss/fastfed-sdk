@@ -1,0 +1,15 @@
+{
+	"name": "FastFedDemoDockerBuild",
+	"version": "0.1.0",
+	"description": "Builder/Runner for the FastFed Demo Docker images",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sailpoint-oss/fastfed-sdk.git"
+	},
+	"scripts": {
+		"build": "docker-compose build",
+		"start": "docker-compose up"
+	},
+	"author": "brian.rose@sailpoint.com",
+	"license": "MIT"
+}

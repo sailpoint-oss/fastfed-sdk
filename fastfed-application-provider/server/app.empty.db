@@ -1,0 +1,184 @@
+{
+	"filename": "app.db",
+	"collections": [
+		{
+			"name": "whitelist",
+			"data": [],
+			"idIndex": [],
+			"binaryIndices": {},
+			"constraints": null,
+			"uniqueNames": [
+				"entityId"
+			],
+			"transforms": {},
+			"objType": "whitelist",
+			"dirty": false,
+			"cachedIndex": null,
+			"cachedBinaryIndex": null,
+			"cachedData": null,
+			"adaptiveBinaryIndices": true,
+			"transactional": false,
+			"cloneObjects": false,
+			"cloneMethod": "parse-stringify",
+			"asyncListeners": false,
+			"disableMeta": false,
+			"disableChangesApi": true,
+			"disableDeltaChangesApi": true,
+			"autoupdate": false,
+			"serializableIndices": true,
+			"ttl": null,
+			"maxId": 40,
+			"DynamicViews": [],
+			"events": {
+				"insert": [],
+				"update": [],
+				"pre-insert": [],
+				"pre-update": [],
+				"close": [],
+				"flushbuffer": [],
+				"error": [],
+				"delete": [
+					null
+				],
+				"warning": [
+					null
+				]
+			},
+			"changes": [],
+			"dirtyIds": [],
+			"isIncremental": false
+		},
+		{
+			"name": "applications",
+			"data": [],
+			"idIndex": [
+				1
+			],
+			"binaryIndices": {},
+			"constraints": null,
+			"uniqueNames": [
+				"entityId"
+			],
+			"transforms": {},
+			"objType": "applications",
+			"dirty": false,
+			"cachedIndex": null,
+			"cachedBinaryIndex": null,
+			"cachedData": null,
+			"adaptiveBinaryIndices": true,
+			"transactional": false,
+			"cloneObjects": false,
+			"cloneMethod": "parse-stringify",
+			"asyncListeners": false,
+			"disableMeta": false,
+			"disableChangesApi": true,
+			"disableDeltaChangesApi": true,
+			"autoupdate": false,
+			"serializableIndices": true,
+			"ttl": null,
+			"maxId": 1,
+			"DynamicViews": [],
+			"events": {
+				"insert": [],
+				"update": [],
+				"pre-insert": [],
+				"pre-update": [],
+				"close": [],
+				"flushbuffer": [],
+				"error": [],
+				"delete": [
+					null
+				],
+				"warning": [
+					null
+				]
+			},
+			"changes": [],
+			"dirtyIds": [],
+			"isIncremental": false
+		},
+		{
+			"name": "settings",
+			"data": [],
+			"idIndex": [
+				8
+			],
+			"binaryIndices": {},
+			"constraints": null,
+			"uniqueNames": [
+				"entityId"
+			],
+			"transforms": {},
+			"objType": "settings",
+			"dirty": false,
+			"cachedIndex": null,
+			"cachedBinaryIndex": null,
+			"cachedData": null,
+			"adaptiveBinaryIndices": true,
+			"transactional": false,
+			"cloneObjects": false,
+			"cloneMethod": "parse-stringify",
+			"asyncListeners": false,
+			"disableMeta": false,
+			"disableChangesApi": true,
+			"disableDeltaChangesApi": true,
+			"autoupdate": false,
+			"serializableIndices": true,
+			"ttl": null,
+			"maxId": 8,
+			"DynamicViews": [],
+			"events": {
+				"insert": [],
+				"update": [],
+				"pre-insert": [],
+				"pre-update": [],
+				"close": [],
+				"flushbuffer": [],
+				"error": [],
+				"delete": [
+					null
+				],
+				"warning": [
+					null
+				]
+			},
+			"changes": [],
+			"dirtyIds": [],
+			"isIncremental": false
+		}
+	],
+	"databaseVersion": 1.5,
+	"engineVersion": 1.5,
+	"autosave": true,
+	"autosaveInterval": 4000,
+	"autosaveHandle": null,
+	"throttledSaves": true,
+	"options": {
+		"env": "NODEJS",
+		"autoload": true,
+		"autosave": true,
+		"autosaveInterval": 4000,
+		"adapter": null,
+		"serializationMethod": "normal",
+		"destructureDelimiter": "$<\n",
+		"recursiveWait": true,
+		"recursiveWaitLimit": false,
+		"recursiveWaitLimitDuration": 2000,
+		"started": 1582311429153
+	},
+	"persistenceMethod": "adapter",
+	"persistenceAdapter": null,
+	"verbose": false,
+	"events": {
+		"init": [
+			null
+		],
+		"loaded": [],
+		"flushChanges": [],
+		"close": [],
+		"changes": [],
+		"warning": []
+	},
+	"ENV": "NODEJS",
+	"isIncremental": false
+}

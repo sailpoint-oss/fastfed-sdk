@@ -1,0 +1,53 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Whitelisted Identity Providers</h4>
+                        <p class="card-category">Identity Providers that are pending FastFed completion.</p>
+                    </div>
+                    <div class="card-body" >
+                        <ng-template #noData>
+                            No pending FastFed handshakes in process.
+                        </ng-template>
+                        <div class="table-responsive" *ngIf="getProviders() | async as whitelistedProviders else noData">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Entity Id
+                                </th>
+                                <th>
+                                    Expires On
+                                </th>
+                                <th>
+
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let provider of whitelistedProviders">
+                                    <td>
+                                        {{provider.metadata.display_settings.display_name}}
+                                    </td>
+                                    <td>
+                                        {{provider.entityId}}
+                                    </td>
+                                    <td>
+                                        {{ getExpirationString(provider.expiresOn) }}
+                                    </td>
+                                    <td>
+                                        <button (click)="removeWhitelistProvider(provider.entityId)">Cancel</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

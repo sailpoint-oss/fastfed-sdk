@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Registered Relying Parties</h4>
+                        <p class="card-category">Relying parties that have registered using FastFed</p>
+                    </div>
+
+                    <div class="card-body" >
+                        <ng-template #noApps>
+                            No apps found
+                        </ng-template>
+                        <div class="table-responsive" *ngIf="relyingParties$ | async as relyingParties else noApps">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>
+                                    Entity Identifier
+                                </th>
+                                <th>
+                                    FastFed Url
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let relyingParty of relyingParties">
+                                    <td>
+                                        {{relyingParty.entityId}}
+                                    </td>
+                                    <td>
+                                        {{relyingParty.providerMetadataUrl}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
