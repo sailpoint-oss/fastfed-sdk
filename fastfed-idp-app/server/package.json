@@ -16,7 +16,7 @@
     "express": "^4.16.4",
     "express-openapi-validator": "^0.53.3",
     "express-session": "^1.16.2",
-    "http-proxy": "^1.18.0",
+    "http-proxy": "^1.18.1",
     "http-proxy-middleware": "^1.0.1",
     "jose": "^1.17.1",
     "lokijs": "^1.5.8",
