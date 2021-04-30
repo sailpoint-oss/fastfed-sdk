@@ -1,4 +1,4 @@
-FROM node:10.16.3 as base
+FROM node:latest as base
 
 # docker build --no-cache -t fastfed-idp-app .
 
@@ -15,6 +15,7 @@ FROM base
 ARG SOURCE_DIR=/source/fastfed-idp-app
 RUN mkdir -p ${SOURCE_DIR} && chown node:node ${SOURCE_DIR}
 
+RUN npm install -g npm@7.11.2
 RUN npm install -g npm-run-all
 
 USER node
