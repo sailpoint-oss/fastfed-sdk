@@ -1,4 +1,4 @@
-FROM node:10.16.3 as base
+FROM node:latest as base
 
 # docker build --no-cache -t fastfed-application-provider .
 
