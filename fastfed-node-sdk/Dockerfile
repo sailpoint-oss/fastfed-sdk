@@ -1,4 +1,4 @@
-FROM node:10.16.3
+FROM node:latest as base
 
 # docker build --no-cache -t fastfed-idp .
 
@@ -13,6 +13,7 @@ FROM node:10.16.3
 ARG SOURCE_DIR=/source/fastfed-node-sdk
 RUN mkdir -p ${SOURCE_DIR} && chown node:node ${SOURCE_DIR}
 
+RUN npm install -g npm@7.11.2
 RUN npm install -g typescript
 
 USER node

@@ -2,7 +2,6 @@ import express, {Application} from 'express';
 import fs from 'fs';
 import path from 'path';
 import passport from 'passport';
-import passportSaml from 'passport-saml';
 import ExpressServer from '../common/server';
 import {IdentityProviderInstance} from '../providers/identityProvider.factory';
 
@@ -17,8 +16,6 @@ It currently is hard-coded to use Labs ADFS server.
 class SamlService {
 
     private _metadata: string;
-    private strategy: passportSaml.Strategy;
-
 
     constructor() {
         this._metadata = null;
@@ -31,10 +28,6 @@ class SamlService {
         return this._metadata;
     }
 
-    public getPassportStrategy() {
-        return this.strategy;
-    }
-
     /*
     Initialize the server for SAML federation.
     This FastFed IdP application will federate the user through the Keycloak server as defined in this method.
@@ -43,15 +36,16 @@ class SamlService {
     public async init() {
         const config = await IdentityProviderInstance.getSamlConfig();
 
-        this.strategy = new passportSaml.Strategy(config,
-            function (profile, done) {
-                return done(null, profile);
-            });
 
-        passport.use('saml', this.strategy);
-
-        this._metadata = this.strategy.generateServiceProviderMetadata(null, config.privateCert || null);
-    }
+        var SamlStrategy = require('passport-saml').Strategy;
+        var SamlStrategyObj = new SamlStrategy(config,
+     		      function (profile, done) {
+		                   return done(null, profile);
+			            });
+        passport.use(SamlStrategyObj);
+	
+        this._metadata = SamlStrategyObj.generateServiceProviderMetadata(null, config.privateCert || null);
+     }
 }
 
 const SamlServiceInstance = new SamlService();

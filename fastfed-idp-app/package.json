@@ -17,13 +17,11 @@
 		"docker-init": "(cd server && npm install && cd ..) && (cd client && npm install && cd ..)"
 	},
 	"devDependencies": {
-		"@types/node": "^13.7.7",
-		"npm-run-all": "^4.1.5",
-		"shelljs": "^0.8.3",
-		"ts-lint": "^4.5.1",
-		"ts-node": "^8.0.2",
-		"tslint": "^5.13.1",
-		"typescript": "^3.4.5"
+		"@types/node": "*",
+		"npm-run-all": "*",
+		"shelljs": "*",
+		"ts-node": "*",
+		"typescript": "*"
 	},
 	"author": "Brian Rose <brian.rose@sailpoint.com>",
 	"license": "MIT",
