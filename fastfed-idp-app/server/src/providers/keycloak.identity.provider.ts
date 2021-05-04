@@ -302,7 +302,7 @@ export class KeycloakIdentityProvider implements FastFedSDK.IIdentityProvider {
             url: `${this.keycloakBaseEndpointUrl}/protocol/saml/descriptor`
         });
 
-        const regEx = /<dsig:X509Certificate>(.*)<\/dsig:X509Certificate>/gms;
+        const regEx = /<ds:X509Certificate>(.*)<\/ds:X509Certificate>/gms;
         const matches = regEx.exec(samlXml);
         if (matches.length === 2) {
             return matches[1];
