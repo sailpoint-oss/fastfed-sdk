@@ -66,7 +66,7 @@ configurations {
 dependencies {
     compile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.9.1'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     compile("com.onelogin:java-saml:${project.JAVA_SAML_VERSION}")
     compile("com.auth0:java-jwt:${project.JAVA_JWT_VERSION}")
