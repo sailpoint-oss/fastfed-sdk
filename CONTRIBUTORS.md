@@ -9,4 +9,4 @@ Those individuals should have their names indented and be marked with a '-'
  
 * SailPoint Technologies, Inc
   - Brian Rose
-  
+  - Matt Domsch
