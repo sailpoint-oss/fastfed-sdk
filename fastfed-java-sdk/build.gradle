@@ -54,3 +54,11 @@ dependencies {
     compile("org.yaml:snakeyaml:${project.SNAKE_YAML_VERSION}")
     implementation("com.auth0:jwks-rsa:${project.JWKS_RSA_VERSION}")
 }
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}
