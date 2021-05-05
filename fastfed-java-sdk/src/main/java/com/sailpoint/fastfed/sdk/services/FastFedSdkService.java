@@ -16,7 +16,6 @@ import com.sailpoint.fastfed.sdk.FastFedSdkProperties;
 import com.sailpoint.fastfed.sdk.exception.CompatibilityException;
 import com.sailpoint.fastfed.sdk.exception.WhitelistedException;
 import com.sailpoint.fastfed.sdk.model.*;
-import net.openid.fastfed.sdk.model.*;
 import com.sailpoint.fastfed.sdk.providers.ApplicationProvider;
 import com.sailpoint.fastfed.sdk.providers.IdentityProvider;
 import com.sailpoint.fastfed.sdk.providers.JwksProvider;
