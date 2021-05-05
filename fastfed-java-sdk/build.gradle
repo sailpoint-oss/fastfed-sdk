@@ -47,11 +47,17 @@ dependencies {
     compile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.9.1'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+
+    // json-simple should be replaced with nimbusds
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     compile("com.onelogin:java-saml:${project.JAVA_SAML_VERSION}")
     compile("com.auth0:java-jwt:${project.JAVA_JWT_VERSION}")
     compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${project.YAML_DATAFORMAT_VERSION}")
     compile("org.yaml:snakeyaml:${project.SNAKE_YAML_VERSION}")
+    // slf4j
+    // org.apache.commons.lang3.ObjectUtils;
+
+    // replace this with nimbusds
     implementation("com.auth0:jwks-rsa:${project.JWKS_RSA_VERSION}")
 }
 
