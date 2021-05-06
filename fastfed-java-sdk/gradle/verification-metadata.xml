@@ -20,7 +20,9 @@
          <trusted-key id="6214760097dc5cfad0175ac2c9fbaa83a8753994" group="^com[.]fasterxml($|([.].*))" regex="true"/>
          <trusted-key id="694621a7227d8d5289699830abe9f3126bb741c1" group="com.google.guava"/>
          <trusted-key id="7616eb882daf57a11477aaf559a252fb1199d873" group="com.google.code.findbugs" name="jsr305" version="3.0.2"/>
-         <trusted-key id="82f0964816ad7319cb0cccf93efd9d223d715e9a" group="com.nimbusds" name="nimbus-jose-jwt" version="9.9.1"/>
+         <trusted-key id="82f0964816ad7319cb0cccf93efd9d223d715e9a">
+            <trusting group="com.nimbusds" name="nimbus-jose-jwt" version="9.9.2"/>
+         </trusted-key>
          <trusted-key id="8a10792983023d5d14c93b488d7f1bec1e2ecae7" group="^com[.]fasterxml($|([.].*))" regex="true"/>
          <trusted-key id="b1dcb69dfbad15dfc6214c44717134bda955e8f3" group="com.googlecode.json-simple" name="json-simple" version="1.1.1"/>
          <trusted-key id="b41089a2da79b0fa5810252872385ff0af338d52" group="joda-time" name="joda-time" version="2.10.3"/>
