@@ -122,7 +122,7 @@ public class FastFedSdkService extends SdkServiceBase {
      * be called because this is what whitelists the provider based on the provider's FastFed metadata.  This is
      * applicable when this server is acting as the initiating server (the one that will call the remote /start endpoint)
      *
-     * @param type                    @see fastfed.atlas.model.FastFedHandshakeType
+     * @param type
      * @param account                 the email account that will be used to perform WebFinger discovery (only for type AUTHENTICATION)
      * @param fastfedMetadataEndpoint the fastfed metadata endpoint url (only for type GOVERNANCE)
      * @return FastFedStartResponse object with information for the UI to use to kick off the process
@@ -196,7 +196,7 @@ public class FastFedSdkService extends SdkServiceBase {
      * and call IDN's API to configure SSO and/or create an app
      *
      * @param token an undecoded, signed JWT token
-     * @returns the registration's response JSON
+     * @return the registration's response JSON
      */
     public String handshakeRegister(String token) throws Exception {
 
