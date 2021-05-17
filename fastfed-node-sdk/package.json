@@ -15,7 +15,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"jose": "^2.0.5",
+		"jose": "^3.12.1",
 		"jwks-rsa": "^2.0.3",
 		"moment": "^2.24.0",
 		"pino": "^6.11.3",
