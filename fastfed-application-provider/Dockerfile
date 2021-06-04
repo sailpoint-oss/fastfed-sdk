@@ -15,7 +15,7 @@ FROM base
 ARG SOURCE_DIR=/source/fastfed-application-provider
 RUN mkdir -p ${SOURCE_DIR} && chown node:node ${SOURCE_DIR}
 
-RUN npm install -g npm@7.11.2
+RUN npm install -g npm@7.16.0
 RUN npm install -g npm-run-all
 
 WORKDIR ${SOURCE_DIR}
