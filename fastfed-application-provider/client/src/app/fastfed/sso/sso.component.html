@@ -20,7 +20,7 @@
 <!--                        <div class="form-group">-->
 <!--                            <input type="text" name="authEndpointResponseBody" [(ngModel)]="authEndpointResponseBody" class="form-control" value="https://adfs.labs.sailpoint.com/federationmetadata/2007-06/federationmetadata.xml">-->
 <!--                        </div>-->
-                        {{ ssoSettings.authEndpointResponseBody}}
+                        {{ toJSON(ssoSettings.authEndpointResponseBody) }}
                     </div>
                 </div>
             </div>
