@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 import {AppService} from '../../common/services/app.service';
 var convert = require('xml-js');
 
@@ -21,9 +21,16 @@ export class SsoComponent implements OnInit, OnDestroy {
         return this.ssoSettingsSubject.asObservable();
     }
 
-    public toJSON(xml: string): string {
-    	var options = {compact: true, spaces: 4};
-        return convert.xml2json(xml, options);
+    public getAuthEndpointMetadata(): Observable<object> {
+    	let options = {compact: true, spaces: 4};
+    	let ssoSettings = this.ssoSettingsSubject.getValue();
+
+    	let json = null;
+    	if (ssoSettings.authEndpointResponseBody) {
+            json = convert.xml2json(ssoSettings.authEndpointResponseBody, options);
+        }
+
+    	return of(json);
     }
 
 

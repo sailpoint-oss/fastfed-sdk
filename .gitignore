@@ -5,3 +5,8 @@ dist/
 # Java gradle
 .gradle/
 build/
+fastfed-application-provider/.idea/fastfed-application-provider.iml
+fastfed-application-provider/.idea/misc.xml
+fastfed-application-provider/.idea/modules.xml
+fastfed-application-provider/.idea/vcs.xml
+fastfed-application-provider/.idea/workspace.xml

@@ -8,6 +8,7 @@
                         <p class="card-category">Currentl IdP SSO Configuration</p>
                     </div>
                     <div class="card-body" *ngIf="getSsoSettings() | async as ssoSettings">
+                        <div *ngIf="getAuthEndpointMetadata() | async as metadata; else notFound">
 <!--                        <div class="form-group">-->
 <!--                            <input type="text" name="Provider Identifier" class="form-control" (value)="ssoSettings.entityId">-->
 <!--                        </div>-->
@@ -20,8 +21,10 @@
 <!--                        <div class="form-group">-->
 <!--                            <input type="text" name="authEndpointResponseBody" [(ngModel)]="authEndpointResponseBody" class="form-control" value="https://adfs.labs.sailpoint.com/federationmetadata/2007-06/federationmetadata.xml">-->
 <!--                        </div>-->
-                        {{ toJSON(ssoSettings.authEndpointResponseBody) }}
-                    </div>
+                        </div>
+                        <div #notFound>
+                            There is no SAML provider currently set up for this application provider.
+                        </div>
                 </div>
             </div>
         </div>
