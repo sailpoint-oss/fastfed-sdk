@@ -25,7 +25,7 @@
 		"jose": "^1.17.1",
 		"lokijs": "^1.5.8",
 		"passport": "^0.4.0",
-		"passport-saml": "^2.2.0",
+		"passport-saml": "^3.1.0",
 		"pino": "^5.11.1",
 		"request": "^2.88.0",
 		"request-promise-native": "^1.0.7",
