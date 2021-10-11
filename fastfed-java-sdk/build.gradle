@@ -38,7 +38,7 @@ configurations {
 }
 
 dependencies {
-    compile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.9.3'
+    compile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.16-preview.1'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.3'
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 
