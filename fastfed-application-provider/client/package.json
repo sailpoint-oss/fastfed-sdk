@@ -28,7 +28,7 @@
     "@angular/platform-server": "10.2.5",
     "@angular/router": "~10.2.5",
     "@popperjs/core": "2.9.2",
-    "ajv": "6.10.0",
+    "ajv": "6.12.3",
     "arrive": "2.4.1",
     "bootstrap": "4.3.1",
     "bootstrap-material-design": "4.1.2",
