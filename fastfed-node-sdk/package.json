@@ -16,7 +16,7 @@
 	},
 	"dependencies": {
 		"jose": "^3.11.6",
-		"jwks-rsa": "^2.0.3",
+		"jwks-rsa": "^3.0.0",
 		"moment": "^2.24.0",
 		"pino": "^6.11.3",
 		"request": "^2.88.0",
