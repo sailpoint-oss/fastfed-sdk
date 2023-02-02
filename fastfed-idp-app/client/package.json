@@ -18,7 +18,7 @@
     "e2e": "ng e2e"
   },
   "dependencies": {
-    "@angular/cli": "^10.2.3",
+    "@angular/cli": "^15.1.4",
     "@angular/core": "^10.2.5",
     "@popperjs/core": "^2.9.2",
     "ajv": "6.10.0",
