@@ -51,7 +51,7 @@
     "zone.js": "^0.10.3"
   },
   "devDependencies": {
-    "@angular/cli": "^10.2.3",
+    "@angular/cli": "^17.0.10",
     "@angular/language-service": "~10.2.5",
     "@types/bootstrap": "4.3.0",
     "@types/chartist": "0.9.46",
